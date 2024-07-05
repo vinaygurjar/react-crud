@@ -52,8 +52,16 @@ table {
   margin-bottom: 20px;
 }
 
-th, td {
-  border: 1px solid #ddd;
+th {
+  border: 1px solid #dddddd;
+  background-color: lightpink;
+  padding: 8px;
+  text-align: left;
+}
+
+
+td {
+  border: 1px solid #dddddd;
   padding: 8px;
   text-align: left;
 }

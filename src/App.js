@@ -12,6 +12,11 @@ const App = () => {
   });
 
   const [studentList, setStudentList] = useState([]);
+  const [isSubmitted, setIsSubmitted] = useState(false); // State to track form submission
+
+  const toggleFormVisibility = () => {
+    setIsSubmitted(false); // Reset isSubmitted to false to show the form
+  };
 
   const handleUpdate = (index) => {
     const selectedStudent = studentList[index];
@@ -49,11 +54,14 @@ const App = () => {
     // Clear form data
     setFormData({
       userName: "",
-      rollNo: "",
+      gender: "",
       stdClass: "",
       tnum: "",
       age: "",
     });
+
+    // Set isSubmitted to true
+    setIsSubmitted(true);
   };
 
   const handleInputChange = (event) => {
@@ -69,68 +77,74 @@ const App = () => {
       <center>
         <h1>Student Management System</h1>
       </center>
+      {!isSubmitted ? ( // Render form if isSubmitted is false
+        <form onSubmit={onFormSubmit} autoComplete="off">
+          <h2>SCIENCE SCHOOL</h2>
+          <h3>Student Form</h3>
+          <div>
+            <label>Full Name</label>
+            <input
+              type="text"
+              name="userName"
+              value={formData.userName}
+              onChange={handleInputChange}
+              placeholder="Enter the user Name"
+            />
+          </div>
+          <div>
+            <label>Gender</label>
+            <input
+              type="text"
+              name="gender"
+              value={formData.gender}
+              onChange={handleInputChange}
+              placeholder="Enter your Gender"
+            />
+          </div>
+          <div>
+            <label>Student Class</label>
+            <input
+              type="text"
+              name="stdClass"
+              value={formData.stdClass}
+              onChange={handleInputChange}
+              placeholder="Enter the Class"
+            />
+          </div>
+          <div>
+            <label>Contact Number </label>
+            <input
+              type="number"
+              name="tnum"
+              value={formData.tnum}
+              onChange={handleInputChange}
+              placeholder="Enter your Phone Number"
+            />
+          </div>
+          <div>
+            <label>Age</label>
+            <input
+              type="number"
+              name="age"
+              value={formData.age}
+              onChange={handleInputChange}
+              placeholder="Enter your Age"
+            />
+          </div>
+          <div class="form-action-buttons">
+            <input type="submit" value="Submit" />
+          </div>
+        </form>
+      ) : (
+        // Show button to add more details if isSubmitted is true
+        <div>
+          <p>Form submitted successfully!</p>
+          <button onClick={toggleFormVisibility}>Add More Details</button>
+        </div>
+      )}
+
       <table>
         <tr>
-          <td>
-            <form onSubmit={onFormSubmit} autoComplete="off">
-              <h2>SCIENCE SCHOOL</h2>
-              <h3>Student Form</h3>
-              <div>
-                <label>Full Name</label>
-                <input
-                  type="text"
-                  name="userName"
-                  value={formData.userName}
-                  onChange={handleInputChange}
-                  placeholder="Enter the user Name"
-                />
-              </div>
-              <div>
-                <label>Gender</label>
-                <input
-                  type="text"
-                  name="gender"
-                  value={formData.gender}
-                  onChange={handleInputChange}
-                  placeholder="Enter the Enrollment Number"
-                />
-              </div>
-              <div>
-                <label>Student Class</label>
-                <input
-                  type="text"
-                  name="stdClass"
-                  value={formData.stdClass}
-                  onChange={handleInputChange}
-                  placeholder="Enter the user Name"
-                />
-              </div>
-              <div>
-                <label>Telephone Number </label>
-                <input
-                  type="text"
-                  name="tnum"
-                  value={formData.tnum}
-                  onChange={handleInputChange}
-                  placeholder="Enter the user Name"
-                />
-              </div>
-              <div>
-                <label>Age</label>
-                <input
-                  type="text"
-                  name="age"
-                  value={formData.age}
-                  onChange={handleInputChange}
-                  placeholder="Enter the user Name"
-                />
-              </div>
-              {/* Repeat for other form fields */}
-              <div class="form-action-buttons">
-                <input type="submit" value="Submit" />
-              </div>
-            </form>
-          </td>
           <td>
             <table className="image">
               <center>
@@ -147,7 +161,7 @@ const App = () => {
             <th>Full Name</th>
             <th>Gender</th>
             <th>Class</th>
-            <th>Telephone Number</th>
+            <th>Contact Number</th>
             <th>Age</th>
             <th>Action</th>
           </tr>
