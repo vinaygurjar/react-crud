@@ -121,7 +121,10 @@ const App = () => {
   return (
     <div style={{ backgroundColor: "rgb(178, 239, 241)" }}>
       <center>
-        <h1 style={{ margin: 0, marginBlock: "20px" }}>
+        <h1 style={{ 
+          margin: 0, 
+          // marginBlock: "20px" 
+          }}>
           Student Management System
         </h1>
       </center>
